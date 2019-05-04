@@ -2,15 +2,14 @@
 #define ROBOT_H
 
 #include "vex.h"
+#include "Subsystems/Base.h"
 
 class Robot {
   public:
     Robot();
     static Robot* getInstance;
-    static vex::motor* LeftMotor;
-    static vex::motor* RightMotor;
-    static vex::motor* ArmMotor;
-    static vex::motor* ClawMotor;
+    static Base* base;
+    static vex::controller* MainController;
   
   private:
     static Robot* instance;

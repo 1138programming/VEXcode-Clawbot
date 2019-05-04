@@ -6,8 +6,6 @@ using namespace vex;
 vex::brain Brain;
 vex::competition Competition;
 
-// Temp place for variables.
-vex::controller Controller1 = vex::controller();
 
 void pre_auton( void ) {
   // All activities that occur before the competition starts
@@ -25,23 +23,22 @@ void usercontrol( void ) {
     Brain.Screen.print("Tank Drive Program Started");
     
     // Set the speed of the arm and claw.
-    int armSpeedPCT  = 200;
-    int clawSpeedPCT = 200;
+    /*int armSpeedPCT  = 200;
+    int clawSpeedPCT = 200;*/
 
     while(1) {
       //Drive Control
       //Set the left and right motor to spin forward using the controller's Axis positions as the velocity value.
-      Robot::LeftMotor->spin(vex::directionType::fwd, Controller1.Axis3.position(), vex::velocityUnits::pct);
-      Robot::RightMotor->spin(vex::directionType::fwd, Controller1.Axis2.position(), vex::velocityUnits::pct);
+      Robot::base->moveBase(Robot::MainController->Axis3.position(), Robot::MainController->Axis2.position());
     
       // Arm Control
       // If button up is pressed...
-      if(Controller1.ButtonUp.pressing()) { 
+      /*if(Robot::MainController->ButtonUp.pressing()) { 
         //...Spin the arm motor forward.
         Robot::ArmMotor->spin(vex::directionType::fwd, armSpeedPCT, vex::velocityUnits::pct);
       }
       // else If the down button is pressed...
-      else if(Controller1.ButtonDown.pressing()) { 
+      else if(Robot::MainController->ButtonDown.pressing()) { 
         //...Spin the arm motor backward.
         Robot::ArmMotor->spin(vex::directionType::rev, armSpeedPCT, vex::velocityUnits::pct);
       }
@@ -53,12 +50,12 @@ void usercontrol( void ) {
     
       // Claw Control
       // If the A button is pressed...
-      if(Controller1.ButtonA.pressing()) { 
+      if(Robot::MainController->ButtonA.pressing()) { 
         //...Spin the claw motor forward.
         Robot::ClawMotor->spin(vex::directionType::fwd, clawSpeedPCT, vex::velocityUnits::pct);
       }
       // else If the Y button is pressed...
-      else if(Controller1.ButtonY.pressing()) { 
+      else if(Robot::MainController->ButtonY.pressing()) { 
         //...Spin the claw motor backward.
         Robot::ClawMotor->spin(vex::directionType::rev, clawSpeedPCT, vex::velocityUnits::pct);
       }
@@ -66,7 +63,7 @@ void usercontrol( void ) {
       else {
         //...Stop the claw motor.
         Robot::ClawMotor->stop(vex::brakeType::brake);        
-      }
+      }*/
 
     // Sleep the task for a short amount of time to prevent wasted resources.
     vex::task::sleep(20);

@@ -4,18 +4,17 @@
 #include "vex.h"
 #include "Robot.h"
 
-class Collector {
-    public:
-      Collector();
-
-      //methods 
-      void moveBase(int leftSpeed, int right Speed);
-      void toggleBase();
-      void stopCollector();        
-
-    private:
-      static vex::motor * LeftMotor;
-      static vex::motor * RightMotor;
+class Base {
+  private:
+  
+  public:
+    //methods 
+    void moveBase(int leftSpeed, int rightSpeed);
+    void toggleBase();
+    void stopCollector();
+    static vex::motor* LeftMotor;
+    static vex::motor* RightMotor;
+    Base();
 };
 
 #endif // SUBSYSTEMS_BASE_H
